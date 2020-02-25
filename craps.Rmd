@@ -7,24 +7,21 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
 ```
 
-## R Markdown
+```{r}
+# Returns a list of dice rolls
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+one_dice_roll <- function() {
+  outcomes <- sample(1:6, 1, replace=T)
+  return(outcomes)
+}
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+two_dice_rolls <- function(){
+  one_dice_roll() + one_dice_roll()
+}
 
-```{r cars}
-summary(cars)
+map_int(1:10, ~ two_dice_rolls())
 ```
 
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
